@@ -4,8 +4,10 @@ on:
   pull_request:
     branches: ["main", "development"]
 jobs:
-  Install-Dependencies:
+  Test-Components:
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
       - run: npm i
+      - name: Run tests
       - run: npm test
