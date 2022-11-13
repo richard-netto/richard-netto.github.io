@@ -17,7 +17,7 @@ jobs:
           node-version: 16.x
 
       - name: Set app environment varibale
-        run: echo "REACT_APP_VERSION=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       - name: Get env environment variable
         run: echo $REACT_APP_VERSION
