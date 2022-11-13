@@ -1,5 +1,4 @@
 import React from 'react';
-import packageInfo from '../package.json';
 
 // Assets
 import logo from './assets/logo.svg';
@@ -27,7 +26,7 @@ const App = (): JSX.Element => {
         >
           Learn React
         </LinkA>
-        <TextP>version: {packageInfo.version}</TextP>
+        <TextP>version: {process.env.REACT_APP_VERSION}</TextP>
       </AppHeader>
     </AppContainerDiv>
   );
