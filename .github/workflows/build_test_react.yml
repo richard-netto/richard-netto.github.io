@@ -24,4 +24,4 @@ jobs:
       - name: Get Version of app
         env:
           REACT_APP_VERSION: npm pkg get version
-        run: echo ${{ REACT_APP_VERSION }}
+        run: echo ${{ env.REACT_APP_VERSION }}
