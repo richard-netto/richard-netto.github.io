@@ -34,7 +34,7 @@ jobs:
   deploy-application:
     runs-on: ubuntu-latest
     needs: [test-components]
-    if: github.base_ref == main
+    if: github.base_ref == "main"
     steps:
       # Checkout
       - name: Check out source code
