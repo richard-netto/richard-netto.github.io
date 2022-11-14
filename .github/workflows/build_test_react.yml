@@ -51,8 +51,8 @@ jobs:
 
       # Build application
       - name: Build application
-        run: npm build
+        run: npm run build
 
       # Deploy application
       - name: Deploy application
-        run: npm deploy
+        run: npm run deploy
