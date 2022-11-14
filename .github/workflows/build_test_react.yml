@@ -5,19 +5,34 @@ on:
     branches: [main, development]
 
 jobs:
-  build_test:
+  build-application:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      # Checkout
+      - name: Check out source code
+        uses: actions/checkout@v3
 
+      # Setup Node
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
+      # Get app version from package.json
       - name: Set app environment varibale
         run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
-      - name: Get env environment variable
-        run: echo $REACT_APP_VERSION
+      # Install dependencies from app
+      - name: Intall dependencies
+        run: npm i
+
+  test-components:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run tests
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
