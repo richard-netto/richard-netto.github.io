@@ -49,6 +49,10 @@ jobs:
       - name: Set app environment varibale
         run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
+      # Install dependencies
+      - name: Install dependencies
+        run: npm i
+
       # Build application
       - name: Build application
         run: npm run build
