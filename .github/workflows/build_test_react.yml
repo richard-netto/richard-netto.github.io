@@ -3,10 +3,15 @@ name: Automation
 on:
   pull_request:
     branches: [main, development]
+  repository_dispatch:
 
 jobs:
   build-application:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-latest]
 
     steps:
       # Checkout
@@ -28,6 +33,34 @@ jobs:
         run: npm i
 
   test-components:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout
+      - name: Check out source code
+        uses: actions/checkout@v3
+
+      - name: Run tests
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
+
+  test-components1:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout
+      - name: Check out source code
+        uses: actions/checkout@v3
+
+      - name: Run tests
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
+
+  test-components2:
     runs-on: ubuntu-latest
 
     steps:
