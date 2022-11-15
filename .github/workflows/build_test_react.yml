@@ -1,9 +1,9 @@
 name: Automation
 
+# Run files on all pull requests
 on:
   pull_request:
     branches: [main, development]
-  repository_dispatch:
 
 jobs:
   test-components:
@@ -25,7 +25,6 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v3
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
           path: |
             **/node_modules
           key: cache-node-modules
@@ -34,33 +33,27 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      # Get app version from package.json
+      - name: Set app environment varibales
+        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+
+      # Build application
+      - name: Build project
         run: npm run build
 
-      - name: Test
-        run: npm test
-
-      # Setup Node
-      #- name: Setup Node
-      #  uses: actions/setup-node@v3
-      #  with:
-      #    node-version: 16.x
-
-      # Get app version from package.json
-      #- name: Set app environment varibale
-      #  run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
-
       # Run tests
-      #- name: Run tests
-      #  run: |
-      #    npm ci
-      #    npm run build
-      #    npm test
+      - name: Run tests
+        run: npm test
 
   deploy-application:
     runs-on: ubuntu-latest
+
+    # Depends on last job success
     needs: [test-components]
+
+    # Runs only in main branch
     if: github.base_ref == 'main'
+
     steps:
       # Checkout
       - name: Check out source code
@@ -74,28 +67,23 @@ jobs:
 
       # Get node_modules cache
       - name: Cache node modules
-        id: cache-npm
+        id: cache-node-modules
         uses: actions/cache@v3
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
+          path: |
+            **/node_modules
           key: cache-node-modules
-
-      # Install in case of cache miss
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: Install dependencies on cache miss
-        run: npm install
-
-      # Get app version from package.json
-      - name: Set app environment varibale
-        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       # Install dependencies
       - name: Install dependencies
-        run: npm i
+        run: npm install
+
+      # Get app version from package.json
+      - name: Set app environment varibales
+        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       # Build application
-      - name: Build application
+      - name: Build project
         run: npm run build
 
       # Deploy application
