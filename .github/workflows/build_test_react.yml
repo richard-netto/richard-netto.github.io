@@ -30,6 +30,7 @@ jobs:
           key: cache-node-modules
 
       # Install in case of cache miss
+      # Test
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: Install dependencies on cache miss
         run: npm install
