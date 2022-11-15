@@ -1,9 +1,9 @@
 name: Automation
 
+# Run files on all pull requests
 on:
   pull_request:
     branches: [main, development]
-  repository_dispatch:
 
 jobs:
   test-components:
@@ -20,21 +20,40 @@ jobs:
         with:
           node-version: 16.x
 
+      # Get node_modules cache
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: cache-node-modules
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
       # Get app version from package.json
-      - name: Set app environment varibale
+      - name: Set app environment varibales
         run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+
+      # Build application
+      - name: Build project
+        run: npm run build
 
       # Run tests
       - name: Run tests
-        run: |
-          npm ci
-          npm run build --if-present
-          npm test
+        run: npm test
 
   deploy-application:
     runs-on: ubuntu-latest
+
+    # Depends on last job success
     needs: [test-components]
+
+    # Runs only in main branch
     if: github.base_ref == 'main'
+
     steps:
       # Checkout
       - name: Check out source code
@@ -46,16 +65,25 @@ jobs:
         with:
           node-version: 16.x
 
-      # Get app version from package.json
-      - name: Set app environment varibale
-        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+      # Get node_modules cache
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: cache-node-modules
 
       # Install dependencies
       - name: Install dependencies
-        run: npm i
+        run: npm install
+
+      # Get app version from package.json
+      - name: Set app environment varibales
+        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       # Build application
-      - name: Build application
+      - name: Build project
         run: npm run build
 
       # Deploy application

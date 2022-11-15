@@ -26,7 +26,9 @@ const App = (): JSX.Element => {
         >
           Learn React
         </LinkA>
-        <TextP>version: {process.env.REACT_APP_VERSION}</TextP>
+        <TextP>
+          version: {process.env.REACT_APP_VERSION?.replaceAll('"', '')}
+        </TextP>
       </AppHeader>
     </AppContainerDiv>
   );
