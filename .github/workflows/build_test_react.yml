@@ -14,22 +14,42 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v3
 
-      # Setup Node
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      # Get node_modules cache
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
         with:
-          node-version: 16.x
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: cache-node-modules
+
+      # Install in case of cache miss
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm build
+
+      - name: Test
+        run: npm test
+
+      # Setup Node
+      #- name: Setup Node
+      #  uses: actions/setup-node@v3
+      #  with:
+      #    node-version: 16.x
 
       # Get app version from package.json
-      - name: Set app environment varibale
-        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+      #- name: Set app environment varibale
+      #  run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       # Run tests
-      - name: Run tests
-        run: |
-          npm ci
-          npm run build --if-present
-          npm test
+      #- name: Run tests
+      #  run: |
+      #    npm ci
+      #    npm run build
+      #    npm test
 
   deploy-application:
     runs-on: ubuntu-latest
