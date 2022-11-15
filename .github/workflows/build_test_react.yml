@@ -26,13 +26,12 @@ jobs:
         uses: actions/cache@v3
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: /node_modules
+          path: |
+            **/node_modules
           key: cache-node-modules
 
-      # Install in case of cache miss
-      # test
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: Install dependencies on cache miss
+      # Install dependencies
+      - name: Install dependencies
         run: npm install
 
       - name: Build
