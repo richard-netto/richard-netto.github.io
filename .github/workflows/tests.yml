@@ -1,5 +1,3 @@
-name: Automation
-
 # Test components
 on:
   pull_request:
