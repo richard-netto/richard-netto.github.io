@@ -1,5 +1,9 @@
 import React from 'react';
+
+// Assets
 import logo from './assets/logo.svg';
+
+// Styles
 import {
   AppContainerDiv,
   AppHeader,
@@ -22,6 +26,9 @@ const App = (): JSX.Element => {
         >
           Learn React
         </LinkA>
+        <TextP>
+          version: {process.env.REACT_APP_VERSION?.replaceAll('"', '')}
+        </TextP>
       </AppHeader>
     </AppContainerDiv>
   );
