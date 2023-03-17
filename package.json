@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "homepage": "https://richard-netto.github.io/",
   "dependencies": {
@@ -59,8 +59,8 @@
   },
   "overrides": {
     "nth-check": "^2.1.1",
-    "loader-utils": "^2.0.3",
-    "minimatch": "^3.0.5"
+    "minimatch": "^3.0.5",
+    "json5": "^2.2.3"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
