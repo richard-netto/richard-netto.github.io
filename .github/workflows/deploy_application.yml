@@ -1,0 +1,50 @@
+# Deploy application
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-application:
+    runs-on: ubuntu-latest
+
+    # Runs only in main branch
+    if: github.base_ref == 'main'
+
+    steps:
+      # Checkout
+      - name: Check out source code
+        uses: actions/checkout@v3
+
+      # Setup Node
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Get node_modules cache
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: cache-node-modules
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Get app version from package.json
+      - name: Set app environment varibales
+        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
+
+      # Build application
+      - name: Build project
+        run: npm run build
+
+      # Deploy application
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN  }}
+          publish_dir: ./build
