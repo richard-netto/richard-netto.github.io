@@ -27,6 +27,14 @@ jobs:
             **/node_modules
           key: cache-node-modules
 
+      # Get submodules
+      - name: Init submodules
+        run: git submodules Init
+
+      # Update all submodules to the latest version
+      - name: Update submodules
+        run: git submodule foreach git pull origin master
+
       # Install dependencies
       - name: Install dependencies
         run: npm install
