@@ -4,7 +4,7 @@ on:
     branches: [main, development]
 
 jobs:
-  test-components:
+  test:
     runs-on: ubuntu-latest
 
     steps:

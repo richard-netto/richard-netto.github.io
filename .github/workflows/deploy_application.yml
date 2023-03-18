@@ -4,7 +4,7 @@ on:
     branches: [main]
 
 jobs:
-  deploy-application:
+  deploy_application:
     runs-on: ubuntu-latest
 
     steps:

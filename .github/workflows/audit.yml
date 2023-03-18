@@ -4,7 +4,7 @@ on:
     branches: [main, development]
 
 jobs:
-  audit-application:
+  audit:
     runs-on: ubuntu-latest
 
     steps:
