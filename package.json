@@ -35,9 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build": "react-scripts build",
-    "submodules-build": "git submodule foreach npm run build",
-    "move-submodules-build": "git submodule foreach 'mkdir ../build/$name && cp -r ./build/* ../build/$name'",
-    "build-application": "npm run build && npm run submodules-build && npm run move-submodules-build",
+    "build-application": "npm run build",
     "deploy": "gh-pages -d build",
     "replace-node-modules": "npx rimraf node_modules && npm i"
   },

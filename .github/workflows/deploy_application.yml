@@ -27,21 +27,9 @@ jobs:
             **/node_modules
           key: cache-node-modules
 
-      # Init submodules and update
-      - name: Init submodules
-        run: git submodule update --init
-
       # Install dependencies
       - name: Install dependencies
         run: npm install
-
-      # Remove submodules .eslintsrc.json
-      - name: Remove submodules .eslintsrc.json
-        run: git submodule foreach 'rm -f .eslintrc.json'
-
-      # Install submodules dependencies
-      - name: Install submodules dependencies
-        run: git submodule foreach npm install
 
       # Get app version from package.json
       - name: Set app environment varibales
@@ -49,7 +37,7 @@ jobs:
 
       # Build application
       - name: Build project
-        run: npm run build-application
+        run: npm run build
 
       # Deploy application
       - name: Deploy to gh-pages
