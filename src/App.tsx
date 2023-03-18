@@ -17,8 +17,19 @@ const App = (): JSX.Element => {
     <AppContainerDiv>
       <AppHeader>
         <AppLogoImg src={logo} alt="logo" />
+
         <TextP>Richard Netto future portfolio page</TextP>
+
         <TextP>I&#39;m a Front-end web developer</TextP>
+
+        <LinkA
+          href="https://richard-netto.github.io/example-repo/"
+          target="_self"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </LinkA>
+
         <LinkA
           href="https://reactjs.org"
           target="_blank"
@@ -26,6 +37,7 @@ const App = (): JSX.Element => {
         >
           Learn React
         </LinkA>
+
         <TextP>
           version: {process.env.REACT_APP_VERSION?.replaceAll('"', '')}
         </TextP>
