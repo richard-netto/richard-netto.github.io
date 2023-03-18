@@ -27,7 +27,7 @@ const App = (): JSX.Element => {
           target="_self"
           rel="noopener noreferrer"
         >
-          Learn React
+          Example-repo
         </LinkA>
 
         <LinkA
