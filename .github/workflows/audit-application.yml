@@ -1,10 +1,10 @@
-# Deploy application
+# Audit application
 on:
-  push:
-    branches: [main]
+  pull_request:
+    branches: [main, development]
 
 jobs:
-  deploy_application:
+  audit-application:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,8 +40,7 @@ jobs:
         run: npm run build
 
       # Deploy application
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN  }}
-          publish_dir: ./build
+      - name: Audit application
+        env:
+          CI: true
+        run: npm audit
