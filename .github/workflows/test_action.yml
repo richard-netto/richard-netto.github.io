@@ -4,7 +4,7 @@ on:
     branches: [main, development]
 
 jobs:
-  test-deploy:
+  test-action:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,4 +41,4 @@ jobs:
 
       # Deploy application
       - name: Check folders
-        run: ls
+        run: tree build
