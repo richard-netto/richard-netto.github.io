@@ -37,6 +37,10 @@ jobs:
 
       # Install submodules dependencies
       - name: Install submodules dependencies
+        run: git submodule foreach 'rm -f .eslintrc.json'
+
+      # Install submodules dependencies
+      - name: Delete submodules .eslintsrc.json
         run: git submodule foreach npm install
 
       # Get app version from package.json
