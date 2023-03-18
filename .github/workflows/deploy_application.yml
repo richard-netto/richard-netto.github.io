@@ -7,9 +7,6 @@ jobs:
   deploy-application:
     runs-on: ubuntu-latest
 
-    # Runs only in main branch
-    if: github.base_ref == 'main'
-
     steps:
       # Checkout
       - name: Check out source code
