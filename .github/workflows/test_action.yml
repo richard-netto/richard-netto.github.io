@@ -40,11 +40,11 @@ jobs:
         run: npm install
 
       # Install submodules dependencies
-      - name: Install dependencies
+      - name: Install submodules dependencies
         run: git submodule foreach npm install
 
       # Get app version from package.json
-      - name: Set app environment varibales
+      - name: Set app environment variables
         run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       # Build application
@@ -54,3 +54,7 @@ jobs:
       # Deploy application
       - name: Check folders
         run: tree build
+
+      # Deploy application
+      - name: Check example-repo folder
+        run: tree example-repo
