@@ -31,14 +31,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Get app version from package.json
-      - name: Set app environment varibales
-        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
-
-      # Build application
-      - name: Build project
-        run: npm run build
-
       # Run tests
       - name: Run tests
         run: npm test

@@ -32,10 +32,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "build": "react-scripts build && npm run",
+    "submodules-build": "git submodule foreach npm run build",
+    "move-submodules-build": "git submodule foreach 'mkdir ../build/$name && cp -r ./build/* ../build/$name'",
+    "build-application": "npm run build && npm run submodules-build && npm run move-submodules-build",
     "deploy": "gh-pages -d build",
     "replace-node-modules": "npx rimraf node_modules && npm i"
   },
