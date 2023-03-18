@@ -29,7 +29,7 @@ jobs:
 
       # Get submodules
       - name: Init submodules
-        run: git submodules Init
+        run: git submodule init
 
       # Update all submodules to the latest version
       - name: Update submodules
