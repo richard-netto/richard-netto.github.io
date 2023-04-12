@@ -29,8 +29,8 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       # Run tests
       - name: Run tests
-        run: pnpm test
+        run: npm test

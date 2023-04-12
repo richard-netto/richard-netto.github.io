@@ -29,18 +29,18 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       # Get app version from package.json
       - name: Set app environment varibales
-        run: echo "REACT_APP_VERSION=$(pnpm pkg get version)" >> $GITHUB_ENV
+        run: echo "REACT_APP_VERSION=$(npm pkg get version)" >> $GITHUB_ENV
 
       # Build application
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
       # Deploy application
       - name: Audit application
         env:
           CI: true
-        run: pnpm audit
+        run: npm audit
