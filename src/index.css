@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    /* Dark mode */
+    :root { 
+        --color-header-background: #3c3c3c;
+        --color-header-button-hover-menu: #454646;
+        --color-text-base: #c5c5c5;
+        --color-window-close-button-hover: #e81123;
+        --color-window-button-hover: #4d4d4e;
+        --font-size-header-options: 13px;
+        --font-size-header-title: 12px;
+    }
+
+    /* Light mode */
+    .light {
+        --color-header-background: #f8f8f8;
+        --color-header-button-hover-menu: #e4e4e4;
+        --color-text-base: #1e1e1e;
+        --color-window-close-button-hover: #e81123;
+        --color-window-button-hover: #d7d7d7;
+        --font-size-header-options: 13px;
+        --font-size-header-title: 12px;
+    }
+}
