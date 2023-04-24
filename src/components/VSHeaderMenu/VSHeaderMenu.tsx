@@ -19,7 +19,7 @@ const VSHeaderMenu: React.FunctionComponent<IVSHeaderMenuProps> = ({
   filename,
 }): JSX.Element => {
   return (
-    <div className="flex h-[1.875rem] items-center bg-dark-header-background">
+    <div className="flex h-[1.875rem] items-center bg-dark-header-background transition-all duration-200 ease-in-out">
       {/* Menu Options */}
       <div className="flex h-[1.875rem] w-1/3 flex-grow items-center">
         {/* VSCode Icon */}
