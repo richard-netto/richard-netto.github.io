@@ -19,6 +19,9 @@ import { ReactComponent as LightRightSideMenuOpenIcon } from '../../../../assets
 import { ReactComponent as LightTerminalClosedIcon } from '../../../../assets/icons/light-terminal-closed.svg';
 import { ReactComponent as LightTerminalOpenIcon } from '../../../../assets/icons/light-terminal-open.svg';
 
+// Store Hook
+import useAppStore from '../../../../store/useAppStore';
+
 // Types
 export type TWindowLayoutButtonIcon =
   | 'CustomizeLayout'
@@ -34,6 +37,15 @@ interface IWindowLayoutButtonProps {
 const WindowLayoutButton: React.FunctionComponent<IWindowLayoutButtonProps> = ({
   iconType,
 }): JSX.Element => {
+  const {
+    primarySideBar,
+    togglePrimarySideBar,
+    panel,
+    togglePanel,
+    secondarySideBar,
+    toggleSecondarySideBar,
+  } = useAppStore();
+
   if (iconType === 'CustomizeLayout')
     return (
       <BaseButton>
@@ -44,25 +56,55 @@ const WindowLayoutButton: React.FunctionComponent<IWindowLayoutButtonProps> = ({
 
   if (iconType === 'LeftSideMenu')
     return (
-      <BaseButton>
-        <DarkLeftSideMenuOpenIcon className="theme-dark:hidden" />
-        <LightLeftSideMenuOpenIcon className="theme-light:hidden" />
+      <BaseButton onClick={togglePrimarySideBar}>
+        {primarySideBar === 'open' && (
+          <DarkLeftSideMenuOpenIcon className="theme-dark:hidden" />
+        )}
+        {primarySideBar === 'open' && (
+          <LightLeftSideMenuOpenIcon className="theme-light:hidden" />
+        )}
+        {primarySideBar === 'close' && (
+          <DarkLeftSideMenuClosedIcon className="theme-dark:hidden" />
+        )}
+        {primarySideBar === 'close' && (
+          <LightLeftSideMenuClosedIcon className="theme-light:hidden" />
+        )}
       </BaseButton>
     );
 
   if (iconType === 'RightSideMenu')
     return (
-      <BaseButton>
-        <DarkRightSideMenuOpenIcon className="theme-dark:hidden" />
-        <LightRightSideMenuOpenIcon className="theme-light:hidden" />
+      <BaseButton onClick={toggleSecondarySideBar}>
+        {secondarySideBar === 'open' && (
+          <DarkRightSideMenuOpenIcon className="theme-dark:hidden" />
+        )}
+        {secondarySideBar === 'open' && (
+          <LightRightSideMenuOpenIcon className="theme-light:hidden" />
+        )}
+        {secondarySideBar === 'close' && (
+          <DarkRightSideMenuClosedIcon className="theme-dark:hidden" />
+        )}
+        {secondarySideBar === 'close' && (
+          <LightRightSideMenuClosedIcon className="theme-light:hidden" />
+        )}
       </BaseButton>
     );
 
   if (iconType === 'Terminal')
     return (
-      <BaseButton>
-        <DarkTerminalOpenIcon className="theme-dark:hidden" />
-        <LightTerminalOpenIcon className="theme-light:hidden" />
+      <BaseButton onClick={togglePanel}>
+        {panel === 'open' && (
+          <DarkTerminalOpenIcon className="theme-dark:hidden" />
+        )}
+        {panel === 'open' && (
+          <LightTerminalOpenIcon className="theme-light:hidden" />
+        )}
+        {panel === 'close' && (
+          <DarkTerminalClosedIcon className="theme-dark:hidden" />
+        )}
+        {panel === 'close' && (
+          <LightTerminalClosedIcon className="theme-light:hidden" />
+        )}
       </BaseButton>
     );
 

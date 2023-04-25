@@ -2,19 +2,13 @@ import React from 'react';
 
 // Components
 import VSHeaderMenu from './components/VSHeaderMenu/VSHeaderMenu';
+import useAppStore from './store/useAppStore';
 
 const App = (): JSX.Element => {
-  const toggleTheme = (): void => {
-    const rootDiv = document.getElementById('root') as HTMLDivElement;
-    if (!rootDiv) return;
-
-    if (rootDiv.className.includes('dark'))
-      rootDiv.className = rootDiv.className.replace('dark', 'light');
-    else rootDiv.className = rootDiv.className.replace('light', 'dark');
-  };
+  const { theme, toggleTheme } = useAppStore();
 
   return (
-    <div className="h-screen bg-black">
+    <div className={`h-screen bg-black ${theme}`}>
       <VSHeaderMenu filename="VSHeaderMenu.tsx" />
 
       <button
