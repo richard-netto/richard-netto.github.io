@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "test": "jest --watchAll",
     "eject": "react-scripts eject",
     "build": "react-scripts build",
     "build-application": "npm run build",
