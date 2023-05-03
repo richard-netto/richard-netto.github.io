@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import WindowResizeButton from './components/WindowResizeButton/WindowResizeButton';
-import WindowLayoutButton from './components/WindowLayoutButton/WindowLayoutButton';
+import AppLayoutButton from './components/AppLayoutButton/AppLayoutButton';
 
 // Constants
 import menuOptions from '../../constants/menu';
@@ -47,16 +47,16 @@ const VSHeaderMenu: React.FunctionComponent<IVSHeaderMenuProps> = ({
       {/* Layout Buttons and Window Actions */}
       <div className="flex h-[1.875rem] w-1/3 flex-row items-center justify-end">
         {/* Custom Layout */}
-        <WindowLayoutButton iconType="LeftSideMenu" />
+        <AppLayoutButton iconType="LeftSideMenu" />
 
         {/* Custom Layout */}
-        <WindowLayoutButton iconType="Terminal" />
+        <AppLayoutButton iconType="Terminal" />
 
         {/* Custom Layout */}
-        <WindowLayoutButton iconType="RightSideMenu" />
+        <AppLayoutButton iconType="RightSideMenu" />
 
         {/* Custom Layout */}
-        <WindowLayoutButton iconType="CustomizeLayout" />
+        <AppLayoutButton iconType="CustomizeLayout" />
 
         {/* Minimize */}
         <WindowResizeButton iconType="minimize" />

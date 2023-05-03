@@ -49,8 +49,8 @@ const WindowLayoutButton: React.FunctionComponent<IWindowLayoutButtonProps> = ({
   if (iconType === 'CustomizeLayout')
     return (
       <BaseButton>
-        <DarkCustomizeLayoutIcon className="theme-dark:hidden" />
-        <LightCustomizeLayoutIcon className="theme-light:hidden" />
+        <DarkCustomizeLayoutIcon className="h-[0.875rem] w-[0.875rem] theme-dark:hidden" />
+        <LightCustomizeLayoutIcon className="h-[0.875rem] w-[0.875rem] theme-light:hidden" />
       </BaseButton>
     );
 
@@ -58,16 +58,16 @@ const WindowLayoutButton: React.FunctionComponent<IWindowLayoutButtonProps> = ({
     return (
       <BaseButton onClick={togglePrimarySideBar}>
         {primarySideBar === 'open' && (
-          <DarkLeftSideMenuOpenIcon className="theme-dark:hidden" />
+          <DarkLeftSideMenuOpenIcon className="h-[0.9375rem] w-[0.9375rem] theme-dark:hidden" />
         )}
         {primarySideBar === 'open' && (
-          <LightLeftSideMenuOpenIcon className="theme-light:hidden" />
+          <LightLeftSideMenuOpenIcon className="h-[0.9375rem] w-[0.9375rem] theme-light:hidden" />
         )}
         {primarySideBar === 'close' && (
-          <DarkLeftSideMenuClosedIcon className="theme-dark:hidden" />
+          <DarkLeftSideMenuClosedIcon className="h-[0.9375rem] w-[0.9375rem] theme-dark:hidden" />
         )}
         {primarySideBar === 'close' && (
-          <LightLeftSideMenuClosedIcon className="theme-light:hidden" />
+          <LightLeftSideMenuClosedIcon className="h-[0.9375rem] w-[0.9375rem] theme-light:hidden" />
         )}
       </BaseButton>
     );
@@ -76,16 +76,16 @@ const WindowLayoutButton: React.FunctionComponent<IWindowLayoutButtonProps> = ({
     return (
       <BaseButton onClick={toggleSecondarySideBar}>
         {secondarySideBar === 'open' && (
-          <DarkRightSideMenuOpenIcon className="theme-dark:hidden" />
+          <DarkRightSideMenuOpenIcon className="h-[0.9375rem] w-[0.9375rem] theme-dark:hidden" />
         )}
         {secondarySideBar === 'open' && (
-          <LightRightSideMenuOpenIcon className="theme-light:hidden" />
+          <LightRightSideMenuOpenIcon className="h-[0.9375rem] w-[0.9375rem] theme-light:hidden" />
         )}
         {secondarySideBar === 'close' && (
-          <DarkRightSideMenuClosedIcon className="theme-dark:hidden" />
+          <DarkRightSideMenuClosedIcon className="h-[0.9375rem] w-[0.9375rem] theme-dark:hidden" />
         )}
         {secondarySideBar === 'close' && (
-          <LightRightSideMenuClosedIcon className="theme-light:hidden" />
+          <LightRightSideMenuClosedIcon className="h-[0.9375rem] w-[0.9375rem] theme-light:hidden" />
         )}
       </BaseButton>
     );
@@ -94,16 +94,16 @@ const WindowLayoutButton: React.FunctionComponent<IWindowLayoutButtonProps> = ({
     return (
       <BaseButton onClick={togglePanel}>
         {panel === 'open' && (
-          <DarkTerminalOpenIcon className="theme-dark:hidden" />
+          <DarkTerminalOpenIcon className="h-[0.9375rem] w-[0.9375rem] theme-dark:hidden" />
         )}
         {panel === 'open' && (
-          <LightTerminalOpenIcon className="theme-light:hidden" />
+          <LightTerminalOpenIcon className="h-[0.9375rem] w-[0.9375rem] theme-light:hidden" />
         )}
         {panel === 'close' && (
-          <DarkTerminalClosedIcon className="theme-dark:hidden" />
+          <DarkTerminalClosedIcon className="h-[0.9375rem] w-[0.9375rem] theme-dark:hidden" />
         )}
         {panel === 'close' && (
-          <LightTerminalClosedIcon className="theme-light:hidden" />
+          <LightTerminalClosedIcon className="h-[0.9375rem] w-[0.9375rem] theme-light:hidden" />
         )}
       </BaseButton>
     );
